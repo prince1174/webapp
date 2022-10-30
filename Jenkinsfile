@@ -13,6 +13,14 @@ pipeline {
       }
     }
     
+    stage ('Docker') {
+      steps {
+        sh 'RUN curl -fsSLO https://desktop.docker.com/linux/main/amd64/docker-desktop-4.13.0-amd64.deb \
+  && sudo dpkg -i -y  \
+  && rm -r docker-desktop-4.13.0-amd64.deb'
+      }
+    }
+    
     stage ('Check-Git-Secrets') {
       steps {
         sh 'rm trufflehog || true'
